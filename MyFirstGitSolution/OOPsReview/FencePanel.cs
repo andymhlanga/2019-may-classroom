@@ -14,8 +14,13 @@ namespace OOPsReview
     //if this class was static the class would not hold data (Then it would have methods with algz pub static)
     //for a class to hold data Do Not Make it static unless you want everyone to have access to that data.(Read and change the data)
 
-    class myData
+    class FencePanel
     {
+        //Properties
+        //A property is associated with a single piece of data
+        //A property has two sub components Get and Set
+        //Get rerurns a value to the calling client
+        //Set sets a value to the property.
 
         public int Height;
         public int Width;
