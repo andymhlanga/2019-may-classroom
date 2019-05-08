@@ -10,20 +10,21 @@ namespace OOPsReview
     {
         static void Main(string[] args)
         {
-
-            Console.WriteLine("Hello Andy Mhlanga");
-        
+            string Type = "";
+            Console.WriteLine("Hello Andy Mhlanga");    
     
 
-            myData anInstance = null;
+            FencePanel anInstance = null;
+
+            FencePanel data = new FencePanel();
 
 
-
-            myData data = new myData();
+            Console.WriteLine("Enter Style of Fence");
+            data.Style = Console.ReadLine(); ;
 
             if(data == null)
             {
-                Console.WriteLine("a VARIBLE HAS NOTHING IN IT");
+                Console.WriteLine("a variable has nothing in it");
             }
 
             if (anInstance == null)
@@ -31,7 +32,9 @@ namespace OOPsReview
                 Console.WriteLine("an instance has nothing in it");
             }
 
+            Type = data.Style;
 
+            Console.WriteLine("Fence Type cheosen is {0}",Type);
 
 
         } //eom
