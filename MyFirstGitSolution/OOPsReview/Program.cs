@@ -14,39 +14,29 @@ namespace OOPsReview
 
             try
             {
-                string Type = "";
-                Console.WriteLine("Hello Andy Mhlanga");
-
-
-                FencePanel anInstance = null;
-
+              
+                Console.WriteLine("Hello Andy Mhlanga"); 
+                
+                //when this statement is executed the default constructor of the fence panel will be called.
                 FencePanel data = new FencePanel();
 
 
-                Console.WriteLine("Enter Style of Fence");
-                data.Style = Console.ReadLine();
-                Console.WriteLine("Enter Width");
-                data.Width = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter Height");
-                data.Height = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter Price");
-                data.Price = double.Parse(Console.ReadLine());
+                Console.WriteLine("Entering Fence Calculator");
+                data.Style = "Private";
+                
+                data.Width = 8.0;
+                
+                data.Height = 5.8;
 
+                //data.Price = double.Parse(Console.ReadLine());
 
-                if (data == null)
-                {
-                    Console.WriteLine("a variable has nothing in it");
-                }
+                Console.WriteLine("Height is {0} \nWdth is {1} \nStyle is {2}",data.Width,data.Height,data.Style);
 
-                if (anInstance == null)
-                {
-                    Console.WriteLine("an instance has nothing in it");
-                }
+                //when this statement is executed the default constructor of the fence panel will be called.
 
-                Type = data.Style;
+                FencePanel gReedy = new FencePanel(4.0,6.8,"Neighbor Love",32.89);
 
-                Console.WriteLine("Fence Type cheosen is {0}", Type);
-
+                Console.WriteLine("Height is {0} \nWdth is {1} \nPrice is {2} \nStyle is {3}", gReedy.Width, gReedy.Height,gReedy.Price, gReedy.Style);
             }
             catch(Exception ex)
             {

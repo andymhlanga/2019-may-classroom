@@ -100,7 +100,16 @@ namespace OOPsReview
 
 
 
+        //Behavior (aka method)
 
+        public double EstimateNumberOfPanels(double linearLength, double gateWidth,int numberOfGates)
+        {
+            double totalGateWidth = gateWidth * numberOfGates;
+            double fenceWidth = linearLength - totalGateWidth;
+            double numberOfPanels = fenceWidth / Width;
+
+            return numberOfPanels;
+        }
 
 
     }  
