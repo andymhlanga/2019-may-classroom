@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace OOPsReview
 
 {
-
     //the default access permissions is private
     //if an outside user of this class wanted access to  the class contents
     //then the access permissions needs to be public
@@ -36,9 +35,6 @@ namespace OOPsReview
         //Since the property will be doing some actions against the data you must supply
         //a storage area
         //This storage area is referred to as a private data member
-
-
-
 
         private string _Style;
 
