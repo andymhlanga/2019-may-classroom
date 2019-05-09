@@ -29,13 +29,16 @@ namespace OOPsReview
 
         // now an auto implpemented  property
 
-        public int Height { get; set; } 
-        public int Width { get; set; }
+        public double Height { get; set; } 
+        public double Width { get; set; }
 
         //Fully Implemented property
         //Since the property will be doing some actions against the data you must supply
         //a storage area
         //This storage area is referred to as a private data member
+
+
+
 
         private string _Style;
 
@@ -51,18 +54,55 @@ namespace OOPsReview
             }
 
             set
-            {               
-                if (String.IsNullOrEmpty(value)) //bool test
-                {
-                    _Style = null;
-                }
-                else
-                {     //value contains the incoming data of the property
-                      //the contents of the value need to be stored.
-                    _Style = value;
-                }
+            {
+                
+                    if (String.IsNullOrEmpty(value)) //bool test
+                    {
+                        _Style = null;
+                    }
+                    else
+                    {     //value contains the incoming data of the property
+                          //the contents of the value need to be stored.
+                        _Style = value;
+                    }
+                
             }
         }
 
-    }
+        // ? means it can hold numeric or null
+        //a nullable numeric will contain a numebr or null 
+        //nullable numerics do not need to be implemented unless you have additional criteria to cover.
+        public double? Price { get; set; }
+
+        //Contructors
+        //Are exuted for the client caller during 
+        //the execuion of the new command
+        //if no constructors are coded then the default constructor is created 
+        //data storage within the class definition is set
+        //the system defaults string numeric  -> null or bool to false
+        //if coder creates one constructor then the coder is responsible for ll constructors
+
+        //default simulates the system initialization of your data storage type 
+        public FencePanel()
+        {
+           //optionally you may wish to have your own default values for the storage items.
+        }
+
+
+        //Greedy Constructor this has a parameter list of all data storage items defined within the class definition. 
+        public FencePanel(double width, double height, string style, double? price)
+        {
+            Width = width;
+            Height = height;
+            _Style = style;
+            Price = price;
+        }
+
+
+
+
+
+
+    }  
+
 }
