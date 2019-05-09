@@ -15,7 +15,7 @@ namespace OOPsReview
 
     class FencePanel
     {
-        //Properties
+        //Properties.these are examples
         //A property is associated with a single piece of data
         //A property has two sub components Get and Set
         //Get rerurns a value to the calling client
@@ -93,8 +93,6 @@ namespace OOPsReview
             _Style = style;
             Price = price;
         }
-
-
 
         //Behavior (aka method)
 
