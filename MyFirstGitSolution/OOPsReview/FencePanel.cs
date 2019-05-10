@@ -13,8 +13,10 @@ namespace OOPsReview
     //if this class was static the class would not hold data (Then it would have methods with algz pub static)
     //for a class to hold data Do Not Make it static unless you want everyone to have access to that data.(Read and change the data)
 
-    class FencePanel
+   public class FencePanel    
     {
+
+       
         //Properties.these are examples
         //A property is associated with a single piece of data
         //A property has two sub components Get and Set
@@ -96,11 +98,10 @@ namespace OOPsReview
 
         //Behavior (aka method)
 
-        public double EstimateNumberOfPanels(double linearLength, double gateWidth,int numberOfGates)
-        {
-            double totalGateWidth = gateWidth * numberOfGates;
-            double fenceWidth = linearLength - totalGateWidth;
-            double numberOfPanels = fenceWidth / Width;
+        public double EstimateNumberOfPanels(double linearLength)
+        {           
+           
+            double numberOfPanels = linearLength / Width;
 
             return numberOfPanels;
         }
