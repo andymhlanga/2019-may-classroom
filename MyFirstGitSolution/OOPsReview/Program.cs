@@ -9,9 +9,7 @@ namespace OOPsReview
     class Program
     {
         static void Main(string[] args)
-        {
-
-            
+        {          
 
             //Console is a reference to a system static class
             //static classes are used by typing the class name
@@ -54,15 +52,16 @@ namespace OOPsReview
             Console.WriteLine("width is: " + anGInstance.Width.ToString());
             Console.WriteLine("style is: " + anGInstance.Style);
             Console.WriteLine("price is: " + anGInstance.Price.ToString() + "\n");
-
-
+            
             //using instances of classes 
+
+            Console.WriteLine("\n Entering Data \n");
             string menuItem = "0";
 
             FenceEstimate CustomerFence = new FenceEstimate();
             CustomerFence.Fence = anGInstance;
 
-            CustomerFence.Gates = null;
+            CustomerFence.Gates = new List<Gate>();
             string inputValue;
             Gate theGate = null; // create an empty taxi both techniques will work
 
@@ -80,6 +79,9 @@ namespace OOPsReview
                 Console.WriteLine("Width");
                 inputValue = Console.ReadLine();
                 theGate.Width = double.Parse(inputValue);
+
+                Console.WriteLine("Style");
+                theGate.Style = Console.ReadLine();
 
 
                 Console.WriteLine("Price");
@@ -128,6 +130,7 @@ namespace OOPsReview
 
 
             Console.WriteLine("Total Fence Extimate");
+            Console.WriteLine("Style chosen:");
             Console.WriteLine("Number of Panels" + numebrOfPanels.ToString());
             Console.WriteLine("Cost of Panels" + FencePrice.ToString());
             Console.WriteLine("Number of Gates" + CustomerFence.Gates.Count.ToString());
