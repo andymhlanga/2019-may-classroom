@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace OOPsReview
 {
     public class Gate
-    {
+    {//yes to awesome
        
         public double Height { get; set; }
         public double Width { get; set; }
