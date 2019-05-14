@@ -48,6 +48,7 @@ namespace OOPsReview
             //   constructor of the FencePanel class will
             //   be called on your behave.
             FencePanel anGInstance = new FencePanel(4.0, 6.8, "private", 32.89);
+
             Console.WriteLine("height is: " + anGInstance.Height.ToString());
             Console.WriteLine("width is: " + anGInstance.Width.ToString());
             Console.WriteLine("style is: " + anGInstance.Style);
