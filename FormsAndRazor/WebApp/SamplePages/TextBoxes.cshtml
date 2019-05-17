@@ -1,66 +1,28 @@
 ﻿@{
     Layout = "~/_Layout.cshtml";
-    Page.Title = "Text Boxes";
+    Page.Title = "TextBoxes";
 
-    //use c# commenting
-    //Retrieve data from the form controls
-    //the form controls can be accessed via the request object
-    //the request object has several collections 
-    //Form controls are found in the .form collection
-    //Aparticula control is refenced by its name in the form collection
-    //syntax Request.form["namestring"]
-    //Genrally all data from controls are strings 90% it will come in as a string
-
-    var leftdata = Request.Form["controlleft"];      //retrieve the control contents
-    var rightdata = Request.Form["controlright"];     //retrieve the control contents
-    var thebutton = Request.Form["formbutton"];        //retrieve the control contents
-    var results = ""; //page local variable
+    //retrieve the data from the form controls
+    //the form controls can be accessed via the Request object
+    //the Request object has several collections
+    //Form controls are found in the .Form collection
+    //a particular control is referenced by it's name in the Form Collection
+    //syntax  Request.Form["namestring"]
+    //GENERALLY ALL data from controls are strings
+    var leftdata = Request.Form["controlleft"];     //retrieve the control contents
+    var rightdata = Request.Form["controlright"];   //retrieve the control contents
+    var thebutton = Request.Form["formbutton"];     //retrieve the control contents
+    var results = "";  //page local variable
 
 }
-
 
 @section banner{
-    <h1>Text Boxes</h1>
+    <h1>TextBoxes</h1>
 }
 
-<!-- Every form needs an id and action that tells it what to do -->
-<!-- method focused on is get / other is put -->
-
-    <form id="theForm" method="post">
-
-        <div class="row">
-            <div class="col-md-offset-4">
-                <label id="Concerns" for="Results"> Results</label>
-                <input type="text" id="Results" name="Results" readonly="readonly" value="@results" />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <label for="controlleft" id="lefttitle">Left Side </label>
-                <input type="text" id="controlleft" name=" controlleft" placeholder="enter some data" value="@leftdata"/>
-                <br />
-                <input type="submit" id="formbutton" name="formbutton" class="btn" value="Left" />
-            </div>
-
-
-            <div class="col-md-6">
-                <label for="controlright" id="righttitle">Right Side </label>
-                <input type="text" id="controlright" name=" controlright" placeholder="enter some data" value="@rightdata" />
-                <br />
-                <input type="submit" id="formbutton" name="formbutton" class="btn" value="Right" />
-            </div>
-        </div>
-
-
-    </form>
-
-
-<!-- check if it is the first time you are coming here handeles the is null-->
-
-@if(IsPost)
+@if (IsPost)
 {
-<p>You pressed the @thebutton button</p>
+    <p>You press the @thebutton button</p>
 
     if (thebutton.Equals("Left"))
     {
@@ -71,3 +33,33 @@
         results = rightdata;
     }
 }
+
+<form id="theForm" method="post">
+    <div class="row">
+        <div class="col-md-offset-4">
+            <label id="Concerns" for="Results">Results:</label>
+            <input type="text" id="Results" name="Results"
+                   readonly="readonly" value="@results" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="controlleft" id="lefttitle">Left Side:</label>
+            <input type="text" id="controlleft" name="controlleft"
+                   placeholder="enter some data" value="@leftdata" />
+            <br />
+            <input type="submit" id="formbutton" name="formbutton"
+                   class="btn" value="Left" />
+        </div>
+        <div class="col-md-6">
+            <label for="controlright" id="righttitle">Right Side:</label>
+            <input type="text" id="controlright" name="controlright"
+                   placeholder="enter some data" value="@rightdata" />
+            <br />
+            <input type="submit" id="formbutton" name="formbutton"
+                   class="btn" value="Right" />
+        </div>
+    </div>
+</form>
+
+
