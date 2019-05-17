@@ -1,6 +1,8 @@
 ﻿@{
     Layout = "~/_Layout.cshtml";
     Page.Title = "Check Boxes";
+
+    var choice = "";
 }
 
 
@@ -8,3 +10,70 @@
     <h1>Check Boxes</h1>
 }
 
+
+@if (IsPost)
+{
+
+    //This shows that you can retrieve the value once the page is processed
+    choice = Request.Form["CheckBoxGroup"];
+
+    if (string.IsNullOrEmpty(choice))
+    {
+        <p> <span style="color:firebrick"> Make  A Selection From Both Coding Choices</span></p>
+        choice = "";
+
+    }
+    else
+    {
+        <p>
+            I see you like to use the following plat forms
+            <ul>
+                @foreach(var platform in choice.Split(','))
+                {
+                    <li> @platform</li>
+                }
+
+            </ul>
+        </p>
+    }
+}
+
+
+
+
+
+
+<form id="theform" method="post">
+
+    <div class="row">
+        <div class="col-sm-offset-1">
+
+            <label id="CheckBoxGroupLabel" for="CheckBoxGroup">
+                Select Your Fav Gaming Platform
+            </label>
+
+            <input type="checkbox" id="CheckBoxGroup" name="CheckBoxGroup" value="PS4"
+                   @(Array.IndexOf(choice.Split(','), "PS4") >= 0 ? "checked" : "") /> PS4 <br />
+            <input type="checkbox" id="CheckBoxGroup" name="CheckBoxGroup" value="XBOX"
+                   @(Array.IndexOf(choice.Split(','), "XBOX") >= 0 ? "checked" : "") /> XBOX <br />
+            <input type="checkbox" id="CheckBoxGroup" name="CheckBoxGroup" value="NINTENDO"
+                   @(Array.IndexOf(choice.Split(','), "NINTENDO") >= 0 ? "checked" : "") />NINTENDO<br />
+        </div>
+
+
+
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-sm-offset-1">
+            <input type="submit" class="btn btn-primary" name="LanguageGroup" value="Submit" />
+
+        </div>
+
+    </div>
+
+
+
+</form>
