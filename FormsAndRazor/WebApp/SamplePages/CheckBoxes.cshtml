@@ -1,79 +1,58 @@
 ﻿@{
     Layout = "~/_Layout.cshtml";
-    Page.Title = "Check Boxes";
+    Page.Title = "CheckBoxes";
 
     var choice = "";
 }
 
-
 @section banner{
-    <h1>Check Boxes</h1>
+    <h1>CheckBoxes</h1>
 }
-
 
 @if (IsPost)
 {
-
-    //This shows that you can retrieve the value once the page is processed
+    //this example demonstrates that you can delay retrieving your form data
+    //    to a time when you really need to have it
     choice = Request.Form["CheckBoxGroup"];
-
     if (string.IsNullOrEmpty(choice))
     {
-        <p> <span style="color:firebrick"> Make  A Selection From Both Coding Choices</span></p>
+        <p><span style="color:firebrick">Make selections from the platform choices.</span></p>
         choice = "";
-
     }
     else
     {
         <p>
-            I see you like to use the following plat forms
+            I see you like to use the following platforms:
             <ul>
                 @foreach(var platform in choice.Split(','))
                 {
-                    <li> @platform</li>
+                    <li>@platform</li>
                 }
-
             </ul>
         </p>
     }
 }
-
-
-
-
-
-
 <form id="theform" method="post">
-
     <div class="row">
         <div class="col-sm-offset-1">
-
-            <label id="CheckBoxGroupLabel" for="CheckBoxGroup">
-                Select Your Fav Gaming Platform
+            <label id="CheckBoxGrouplabel" for="CheckBoxGroup">
+                Select your favorite gaming platforms:
             </label>
-
             <input type="checkbox" id="CheckBoxGroup" name="CheckBoxGroup" value="PS4"
-                   @(Array.IndexOf(choice.Split(','), "PS4") >= 0 ? "checked" : "") /> PS4 <br />
-            <input type="checkbox" id="CheckBoxGroup" name="CheckBoxGroup" value="XBOX"
-                   @(Array.IndexOf(choice.Split(','), "XBOX") >= 0 ? "checked" : "") /> XBOX <br />
-            <input type="checkbox" id="CheckBoxGroup" name="CheckBoxGroup" value="NINTENDO"
-                   @(Array.IndexOf(choice.Split(','), "NINTENDO") >= 0 ? "checked" : "") />NINTENDO<br />
+                   @(Array.IndexOf(choice.Split(','), "PS4") >= 0 ? "checked" : "") />PS4<br />
+            <input type="checkbox" id="CheckBoxGroup" name="CheckBoxGroup" value="Cell Phone"
+                   @(Array.IndexOf(choice.Split(','), "Cell Phone") >= 0 ? "checked" : "") />Phone<br />
+            <input type="checkbox" id="CheckBoxGroup" name="CheckBoxGroup" value="Nintendo DS"
+                   @(Array.IndexOf(choice.Split(','), "Nintendo DS") >= 0 ? "checked" : "") />Nintendo DS<br />
+            <input type="checkbox" id="CheckBoxGroup" name="CheckBoxGroup" value="WII"
+                   @(Array.IndexOf(choice.Split(','), "WII") >= 0 ? "checked" : "") />WII<br />
         </div>
-
-
-
     </div>
-
-
-
     <div class="row">
         <div class="col-sm-offset-1">
-            <input type="submit" class="btn btn-primary" name="LanguageGroup" value="Submit" />
-
+            <input type="submit" class="btn btn-primary" id="formButton" name="formButton"
+                   value="Submit" />
         </div>
-
     </div>
-
-
-
 </form>
+

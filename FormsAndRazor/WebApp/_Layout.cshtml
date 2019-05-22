@@ -1,33 +1,25 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta name="Author" content="Andy Mhlanga"/>
-    <meta name="description" content="Layout Page for Forms Razor Examples" />
+    <meta name="author" content="Don Welch" />
+    <meta name="description" content="layout page for Forms and Razor examples" />
     <title>@Page.Title</title>
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap.js"></script>
-    
     @RenderSection("head", required: false)
 </head>
 <body>
-    <div class=" container-fluid">
-
+    <div class="container-fluid">
         @RenderPage("~/_Menu.cshtml")
-
-        <div class=" jumbotron">
+        <div class="jumbotron">
             @RenderSection("banner", required: true)
         </div>
-
         @RenderBody()
-
-        <hr style="border:solid">
-
+        <hr style="border:5px solid black"> 
         @RenderSection("footer", required: false)
+        <br/>
         &copy; CPSC1517 Nait Learning Material, @DateTime.Today.ToShortDateString()
-        <br />
-
     </div>
-        
 </body>
 </html>

@@ -1,45 +1,27 @@
-﻿<div class="navbar  navbar-default navbar-fixed-top">
-
+﻿<div class="navbar navbar-default navbar-fixed-top">
     <!-- the next div sets up the branding title-->
     <div class="navbar-header">
-        <a class="navbar-brand" style="font-size:x-large ">
-
-            <strong> Razor Samples</strong>
+        <a class="navbar-brand" style="font-size:x-large">
+            <strong>Razor Samples</strong>
         </a>
-
     </div>
-
-    <!-- Menu Items area-->
+    <!-- menu items area-->
     <ul class="nav navbar-nav">
-
-        <!-- Root Menu Item Nothing underneath-->
-
-        <li> <a href="@Href("~/index.cshtml")"> Home </a></li>
-
-        <!-- Example of a sub menu drop down menu-->
-
+        <!-- root menu item-->
+        <li> <a href="@Href("~/index.cshtml")">Home</a></li>
+        <!-- submenu (drop down menu)-->
         <li class="dropdown">
-            
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <!-- b caret is the drop down triangle-->
-                Controls<b class="caret"> </b>
+                Controls <b class="caret"></b>
             </a>
-
             <ul class="dropdown-menu">
-
-                <li> <a href="@Href("~/SamplePages/TextBoxes.cshtml")">Text Boxes </a></li>
-
-                <li> <a href="@Href("~/SamplePages/RadioButtons.cshtml")">Radio Buttons</a></li>
-
-                <li> <a href="@Href("~/SamplePages/CheckBoxes.cshtml")">Check Boxes </a></li>
-
-                <li> <a href="@Href("~/SamplePages/DropDownList.cshtml")"> Drop Downs </a></li>
-
-
+                <li> <a href="@Href("~/SamplePages/TextBoxes.cshtml")">TextBoxes</a></li>
+                <li> <a href="@Href("~/SamplePages/RadioButtons.cshtml")">RadioButtons</a></li>
+                <li> <a href="@Href("~/SamplePages/CheckBoxes.cshtml")">CheckBoxes</a></li>
+                <li> <a href="@Href("~/SamplePages/DropDownList.cshtml")">Dropdowns</a></li>
             </ul>
         </li>
-        
     </ul>
-
 </div>
+
 
