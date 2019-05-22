@@ -1,6 +1,8 @@
 ﻿@{
     Layout = "~/_Layout.cshtml";
     Page.Title = "DropDown";
+
+    var choices = Request.Form["CodingSamplePage"];
 }
 
 @section banner{
@@ -8,3 +10,74 @@
 }
 
 
+@if(IsPost){
+
+    switch (choices.ToUpper())
+    {
+        case"TEXTBOXES":
+            {
+
+                Response.Redirect("TextBoxes.cshtml");
+                break;
+            }
+
+        case "RADIOBUTTONS":
+            {
+
+                Response.Redirect("RadioButtons.cshtml");
+                break;
+            }
+
+        case "CHECKBOXES":
+            {
+
+                Response.Redirect("CheckBoxes.cshtml");
+                break;
+            }
+
+
+        default:
+            {
+                <p><span style="color:firebrick">Make a choice for the sample you would like to view</span></p>
+                break;
+            }
+
+
+
+
+    }
+
+
+}
+
+<form id="theform" method="post">
+
+
+<div class="row">
+
+    <div class="col-sm-offset-1">
+
+        <label id="label1" for="CodingSamplePage">Select the sample to view</label>&nbsp;,&nbsp;   <!-- &nbsp places a space after the label-->
+        <!--The drop down list(aka combo box) is a set of two tags the control is the select tag the contents is the option you may have several optios tags each representing a line item (li) in the control
+    the option tag has two components value ehich is hidden and a visible text string -->
+
+        <select id="CodingSamplePage" name="CodingSamplePage">
+            <option value="">select...</option>
+            <option value="TextBoxes"> TextBoxes </option>
+            <option value="RadioButtons">RadioButtons</option>
+            <option value="CheckBoxes">CheckBoxes</option>
+        </select>&nbsp;,&nbsp;
+
+        <input type="submit" id="formbutton" name="formbutton"
+               class="btn" value="Submit" />
+
+    </div>
+
+
+</div>
+
+
+
+
+
+</form>
