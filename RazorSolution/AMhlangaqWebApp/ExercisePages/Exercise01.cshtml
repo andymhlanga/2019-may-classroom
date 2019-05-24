@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "Exercise01";
+
+
+    var customerName = Request.Form["CustomerName"];
+    //var scriptgroup = Request.Form["ScriptGroup"];
+
+
+}
+
+@section pagetitle{
+<h1>Exercise01: Basic Form Processing </h1>
+}
+
+@*@if (IsPost)
+{
+    //do none of this logic unless you are in a post back scenario
+
+    //validate input
+    if (string.IsNullOrEmpty(languagegroup) || string.IsNullOrEmpty(scriptgroup))
+    {
+        <p><span style="color:firebrick">Make a selection from both coding choices.</span></p>
+        languagegroup = "";
+        scriptgroup = "";
+    }
+    else
+    {
+        if (languagegroup.Equals("C#", StringComparison.OrdinalIgnoreCase))
+        {
+            <p>You will enjoy the CPSC1517 course. We use C#.</p>
+        }
+        else
+        {
+            <p> Too bad. Unfortunately the CPSC1517 course does not use @languagegroup</p>
+        }
+        if (scriptgroup.Equals("Razor", StringComparison.OrdinalIgnoreCase))
+        {
+            <p>You will enjoy the CPSC1517 course. We use Razor.</p>
+        }
+        else
+        {
+            <p> Too bad. Unfortunately the CPSC1517 course does not use @scriptgroup</p>
+        }
+    }
+}
+else
+{
+    //the else side is only done when the page is considered 1st time
+    //this is an excellent place to put logic that needs to happen
+    //     when the page is being generated for the first time
+    languagegroup = "";
+    scriptgroup = "";
+}*@
+
+
+
+
+
+
+
