@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "Multi Record Web Grid";
+
+    //retrieve the passed data values
+    //use the .QueryString Structure of the Request
+    //Syntax
+    //Request.QueryString["passeddatalabel"];
+    //if no label is specified in on the url the reuslt will be null 
+    //data is passed as a string.
+    var cid = Request.QueryString["cid"];
+
+    //test to see if you actually receive a value
+
+    if (String.IsNullOrEmpty(cid))
+    {
+
+        Response.Redirect("MultiRecordQuery.cshtml");
+
+    }
+
+    var db = Database.Open("NWDB");
+
+    var querycommand = @"SELECT ProductID, ProductName, QuantityPerUnit, UnitPrice, Discontinued
+                         FROM Products
+                         WHERE CategoryID =@0";
+
+
+    var datainfo = db.Query(querycommand, cid);
+
+    //Web Grid is an object you need to create an instance of the object
+
+    var gridinstance = new WebGrid(datainfo);  
+
+
+}
+
+
+@section banner{
+    <h1>Database: Multiple Record Web Grid</h1>
+
+    <blockquote>
+        This page will use the multi web grid object to disp the product category records. on this page there will be no form 
+    </blockquote>
+
+}
+
+<span style="font-size:xx-large"><strong>Database: WebGrid</strong></span>
+<br/>
+
+<div class="row">
+    <div class="col-md-offset">
+
+        <span style="font-size:x-large">Products for @cid</span>
+        <!-- default web grid no customization-->
+
+        @gridinstance.GetHtml();   
+
+    </div>
+</div>

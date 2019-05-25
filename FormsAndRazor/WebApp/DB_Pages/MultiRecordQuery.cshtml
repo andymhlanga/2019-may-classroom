@@ -1,0 +1,82 @@
+﻿@{
+
+    // Any variable within the opening coding block is global to the page
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "Multi Record Query";
+
+
+    var db = Database.Open("NWDB");  //Opens the database using the connection name
+
+    var querycommand = @"SELECT CategoryID, CategoryName
+         FROM Categories
+         ORDER BY CategoryName";
+
+    var datainfo = db.Query(querycommand); //this will return al the stuff
+
+
+}
+
+@section banner{
+    <h1>Database: Multiple Record Query</h1>
+
+    <blockquote>
+        This is the first two page query technique this first page will load a dropdown list from data procvided.The second page will pass the data to the second page
+    </blockquote>
+
+}
+
+@if (IsPost)
+{
+
+    var choice = Request.Form["CategoryList"]; //did the user actually make a category selection?
+
+    if (choice.Equals("0"))
+    {
+        <p><span style="color:dodgerblue"> Select a category for which to search for products to search </span></p>
+    }
+    else
+    {
+        //Pass data to the next page
+        // use the response structure with the .Redirect() method
+        //syntax
+        //Response.Redirect("relative page name [?label=value[&label=value]]");
+        Response.Redirect("MultiRecordWebGrid.cshtml?cid="+ choice); 
+    }
+
+
+}
+
+
+
+
+
+
+<form id="theform" methos="post">
+
+
+    <div class="col-md-offet-5">
+
+        <label for="CategoryList" id="CategoryListLabel">
+            Select the category products to view:
+        </label>&nbsp;
+
+        <select id="CategoryList" name="CategoryList">
+            <option id="CategoryList"value="0"> Select...</option>
+
+            @foreach (var rowitem in datainfo)
+            {
+                <option id ="CategoryList" value="@rowitem.CategoryID">@rowitem.CategoryName</option>//calling to display each intance line
+
+            }
+
+        </select>
+
+        <input type="submit" id="FormButton" name="FormButton"
+               class="btn btn-primary" value="Submit" />
+
+    </div>
+
+
+
+
+</form>
