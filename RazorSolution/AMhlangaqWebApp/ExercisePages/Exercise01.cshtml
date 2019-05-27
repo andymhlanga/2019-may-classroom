@@ -3,57 +3,82 @@
     Page.Title = "Exercise01";
 
 
-    var customerName = Request.Form["CustomerName"];
-    //var scriptgroup = Request.Form["ScriptGroup"];
-
+    var customerName = "";
+    var choice = "";
+    var scriptgroup = Request.Form["MealChoice"];
+    var thebutton = Request.Form["FormButton"];
 
 }
 
 @section pagetitle{
-<h1>Exercise01: Basic Form Processing </h1>
+    <h1>Exercise01: Basic Form Processing </h1>
 }
 
-@*@if (IsPost)
+@if (IsPost)
 {
-    //do none of this logic unless you are in a post back scenario
+    //this example demonstrates that you can delay retrieving your form data
+    //    to a time when you really need to have it
+    choice = Request.Form["CheckBoxGroup"];
+    customerName = Request.Form["CustomerName"];
 
-    //validate input
-    if (string.IsNullOrEmpty(languagegroup) || string.IsNullOrEmpty(scriptgroup))
+    if (thebutton.Equals("Reset"))
     {
-        <p><span style="color:firebrick">Make a selection from both coding choices.</span></p>
-        languagegroup = "";
-        scriptgroup = "";
+        customerName = "";
+        choice = "";
+
     }
+    if (string.IsNullOrEmpty(customerName))
+    {
+        <p><span style="color:firebrick">Please enter your name </span></p>
+        customerName = "";
+    }
+    if (string.IsNullOrEmpty(choice))
+    {
+        <p><span style="color:firebrick">Please make selections from the meal choices.</span></p>
+        choice = "";
+    }  
     else
     {
-        if (languagegroup.Equals("C#", StringComparison.OrdinalIgnoreCase))
-        {
-            <p>You will enjoy the CPSC1517 course. We use C#.</p>
-        }
-        else
-        {
-            <p> Too bad. Unfortunately the CPSC1517 course does not use @languagegroup</p>
-        }
-        if (scriptgroup.Equals("Razor", StringComparison.OrdinalIgnoreCase))
-        {
-            <p>You will enjoy the CPSC1517 course. We use Razor.</p>
-        }
-        else
-        {
-            <p> Too bad. Unfortunately the CPSC1517 course does not use @scriptgroup</p>
-        }
+        <p>
+            @customerName, I see that you have the following meal entries:
+            <ul>
+                @foreach (var platform in choice.Split(','))
+                {
+                    <li>@platform</li>
+                }
+            </ul>
+        </p>
     }
 }
-else
-{
-    //the else side is only done when the page is considered 1st time
-    //this is an excellent place to put logic that needs to happen
-    //     when the page is being generated for the first time
-    languagegroup = "";
-    scriptgroup = "";
-}*@
+<form id="theform" method="post">
+    <div class="row">
+        <div class="col-md-2">
+            <label for="customerrname" id="CustomerNameLabel">Customer Name:</label><br />
+            <input type="text" id="customername" name="customername"
+                   placeholder="" value="@customerName" />
+            <br /><br /><br />
+            <input type="submit" class="btn btn-primary" id="FormButton" name="FormButton"
+                   value="Submit" />&nbsp;&nbsp;
+            <input type="submit" id="FormButton" name="FormButton"
+                   class="btn" value="Reset" />
+        </div>
+        <div class="col-md-2">
+
+            <label id="CheckBoxGrouplabel" for="CheckBoxGroup">
+                Choose your meal Items:
+            </label><br />
+            <input type="checkbox" id="CheckBoxGroup" name="CheckBoxGroup" value="Steak"
+                   @(Array.IndexOf(choice.Split(','), "Steak") >= 0 ? "checked" : "") />Steak<br />
+            <input type="checkbox" id="CheckBoxGroup" name="CheckBoxGroup" value="Seafood"
+                   @(Array.IndexOf(choice.Split(','), "Seafood") >= 0 ? "checked" : "") />Seafood<br />
+            <input type="checkbox" id="CheckBoxGroup" name="CheckBoxGroup" value="Vegetables"
+                   @(Array.IndexOf(choice.Split(','), "Vegetables") >= 0 ? "checked" : "") />Vegetables<br />
 
 
+        </div>
+
+    </div>
+</form>
 
 
 
