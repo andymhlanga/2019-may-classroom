@@ -1,0 +1,109 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "Single Query";
+
+    var searcharg = Request.Form["SearchArg"];
+    var thebutton = Request.Form["FormButton"];
+
+    var regionid = "";
+    var description = "";
+
+    //open a connection to the database
+    //use the connection string name attribute value
+    var db = Database.Open("NWDB");
+
+    //create the sql query command to retreive the desired data
+    //if the query command requires a parameter value
+    //    then you will need to use a placeholder
+    //placeholder syntax is: @n where n is 0, 1, 2, ....
+    //you can have multiple placeholders
+    //HARD CODED STRING CANNOT BE OVER MULTIPLE PHYSICAL LINES!!!!!
+    var querycommand = "SELECT RegionID, RegionDescription "
+                    + "FROM Region "
+                    + "WHERE RegionID = @0";
+
+    //execute your command
+    //the result will be one of the following
+    //  a) a single record
+    //  b) a data set of 0, 1 or more records
+    //  c) a single value
+    //your expected results will determine how you execute your command
+    //  a) .QuerySingle()
+    //  b) .Query()
+    //  c) .QueryValue()
+    //our search is by primary key therefore our expected results is (a) single record
+    //the .QuerySingle(command string[,comma delimiter list of parameter values])
+    //order of parameter values MUST match the order of placeholders
+    var datainfo = db.QuerySingle(querycommand, searcharg);
+}
+
+@section banner{
+    <h1>Database: Single Record Query</h1>
+}
+
+@if (IsPost)
+{
+    //which button was pressed
+    if (thebutton.Equals("Clear"))
+    {
+        searcharg = "";
+        regionid = "";
+        description = "";
+    }
+    else
+    {
+        //validate that a value was supplied to search for
+        if (string.IsNullOrEmpty(searcharg))
+        {
+            <p><span style="color:dodgerblue">Enter a region id for which to search.</span></p>
+            //optionally, consider empting your result output fields
+            regionid = "";
+            description = "";
+        }
+        //test if sql returned any data for processing
+        // QueryString(), you will check for null
+        // Query(), you will check dataset.Count() == 0
+        else if (datainfo == null)
+        {
+            <p><span style="color:dodgerblue">No region found for the id: @searcharg</span></p>
+            //optionally, consider empting your result output fields
+            regionid = "";
+            description = "";
+        }
+        else
+        {
+            //accessing the data from your sql data output can be done
+            //   a) via an index   xxxx[n] where n = 0, 1, 2, etc.
+            //   b) via property name     xxxx.PropertyName
+            //      (the PropertyName is the column title string for
+            //        your query)
+            regionid = datainfo[0].ToString();
+            description = datainfo.RegionDescription;
+        }
+    }
+}
+
+<form id="theForm" method="post">
+
+    <div class="row">
+        <div class="col-md-6">
+            <label for="SearchArg" id="label1">Enter a Region ID:</label>
+            <input type="text" id="SearchArg" name="SearchArg" value="@searcharg"
+                   placeholder="enter region id" />
+            <br />
+            <input type="submit" id="FormButton" name="FormButton"
+                   class="btn btn-primary" value="Submit" />&nbsp;&nbsp;
+            <input type="submit" id="FormButton" name="FormButton"
+                   class="btn" value="Clear" />
+        </div>
+        <div class="col-md-6">
+            <label for="RegionID" id="label2">Region ID:</label>&nbsp;
+            <input type="text" id="RegionID" name="RegionID" value="@regionid"
+                   readonly="readonly" />
+            <br />
+            <label for="Description" id="label3">Description:</label>
+            <input type="text" id="Description" name="Description" value="@description"
+                   readonly="readonly" />
+        </div>
+    </div>
+</form>
