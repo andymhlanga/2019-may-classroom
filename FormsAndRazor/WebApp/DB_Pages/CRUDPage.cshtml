@@ -1,148 +1,126 @@
 ﻿@{
+    /**/
 
     Layout = "~/_Layout.cshtml";
     Page.Title = "CRUD Page";
 
-   
+
     var productname = "";
     var supplierid = "";
     var categoryid = "";
-    var qtyperunit = "";
+    var quantityperunit = "";
     var unitprice = "";
     var unitsinstock = "";
     var unitsonorder = "";
     var reorderlevel = "";
     var thebutton = Request.Form["FormButton"];
-
 }
 
 @section banner{
     <h1>Database: CRUD Product</h1>
 }
 
-
 @if (IsPost)
 {
-
-    //when you have multiple button the first step is to determine what action to do for the pressed button
+    //when you have multiple buttons, a good practice is to determine
+    //    what action to do for the press button FIRST!
     if (thebutton.Equals("Clear"))
-
     {
-
-        <p class="text-center well"> You cleared the current Input.</p>
-
+        <p class="text-center well">You cleaned the current input.</p>
     }
     else
     {
-
-
-
-       
-        productname = Request.Form["ProductID"];
+        productname = Request.Form["ProductName"];
         supplierid = Request.Form["SupplierID"];
         categoryid = Request.Form["CategoryID"];
-        qtyperunit = Request.Form["QuantityPerUnit"];
+        quantityperunit = Request.Form["QuantityPerUnit"];
         unitprice = Request.Form["UnitPrice"];
         unitsinstock = Request.Form["UnitsInStock"];
         unitsonorder = Request.Form["UnitsOnOrder"];
         reorderlevel = Request.Form["ReorderLevel"];
 
+        //assume for now that all data is valid
 
-        //assume tht all data is valid
-
-        //You should and are expected to perfom CRUD Operations within the user friendly error handling.
-
+        //you should (and are expected) to perform CRUD operations
+        //   within user friendly error handling
         try
         {
-
             var db = Database.Open("NWDB");
-            var insertcomand = @"INSERT INTO Products(ProductName,
-                      SupplierID,CategoryID,QuantityPerUnit,
-                      UnitPrice,UnitsInStock,UnitsOnOrder,
-                      ReorderLevel,Discontinued)
-                      VALUES(@0,@1,@2,@3,@4,@5,@6,@7,@8)";
-
-
-           db.Execute(insertcomand, productname,
-                string.IsNullOrEmpty(supplierid) ? null : supplierid,
-                string.IsNullOrEmpty(supplierid) ? null : supplierid,
-                string.IsNullOrEmpty(categoryid) ? null : categoryid,
-                string.IsNullOrEmpty(qtyperunit) ? null : qtyperunit,
-                string.IsNullOrEmpty(unitprice) ? null : unitprice,
-                string.IsNullOrEmpty(unitsinstock) ? null : unitsinstock,
-                string.IsNullOrEmpty(unitsonorder) ? null : unitsonorder,
-                string.IsNullOrEmpty(reorderlevel) ? null : reorderlevel,
-                 0);
-
-            //there are only two possiblilities for an insert
-            //a - works
-            //b - abort handled by try catch
-
-            <p class="text-center well"> <span style="color:green"><strong> Product has been added.</strong> </span></p>
-
-         
+            var insertcommand = @"INSERT INTO Products (ProductName,
+                      SupplierID, CategoryID, QuantityPerUnit,
+                      UnitPrice, UnitsInStock, UnitsOnOrder,
+                      ReorderLevel, Discontinued)
+                      VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8)";
+            db.Execute(insertcommand, productname,
+                    string.IsNullOrEmpty(supplierid) ? null : supplierid,
+                    string.IsNullOrEmpty(categoryid) ? null : categoryid,
+                    string.IsNullOrEmpty(quantityperunit) ? null : quantityperunit,
+                    string.IsNullOrEmpty(unitprice) ? null : unitprice,
+                    string.IsNullOrEmpty(unitsinstock) ? null : unitsinstock,
+                    string.IsNullOrEmpty(unitsonorder) ? null : unitsonorder,
+                    string.IsNullOrEmpty(reorderlevel) ? null : reorderlevel,
+                    0);
+            //there are only 2 possibilities for an insert
+            //  a) works
+            //  b) aborts (handle by try/catch)
+            <p class="text-center well"><span style="color:green"><strong>Product has been added.</strong></span></p>
 
         }
         catch (Exception ex)
         {
-            <p class="text-center well"> <span style="color:firebrick"><strong> @ex.Message You cleared the current Input.</strong> </span></p>
+            <p class="text-center well"><span style="color:firebrick"><strong>@ex.Message</strong></span></p>
         }
-
-
     }
-
-
 }
-
-
 <form id="theform" method="post">
-
     <div class="row">
         <div class="col-md-6 text-right">
            
-            <label for="ProductName" id="ID:">Name:</label><br />
-            <label for="SupplierID" id="ID:">Supplier:</label><br />
-            <label for="CategoryID" id="ID:">Category:</label><br />
-            <label for="QuantityPerUnit" id="ID:">Qty/Unit:</label><br />
-            <label for="UnitPrice" id="ID:">Price:</label><br />
-            <label for="UnitsInStock" id="ID:">QoH:</label><br />
-            <label for="UnitsOnOrder" id="ID:">QoO:</label><br />
-            <label for="ReorderLevel" id="ID:">RoL:</label><br />
-
+            <label for="ProductName">Name:</label><br />
+            <label for="SupplierID">Supplier:</label><br />
+            <label for="CategoryID">Catgeory:</label><br />
+            <label for="QuantityPerUnit">Qty/Unit:</label><br />
+            <label for="UnitPrice">Price:</label><br />
+            <label for="UnitsInStock">QoH:</label><br />
+            <label for="UnitsOnOrder">QoO:</label><br />
+            <label for="ReorderLevel">RoL:</label><br />
             <br />
         </div>
         <div class="col-me-6 text-left">
-
-           
-            <input type="text" id="ProductName" name="ProductName" value="@productname" /><br />
-            <input type="text" id="SupplierID" name="SupplierID" value="@supplierid" /><br />
-            <input type="text" id="CategoryID" name="CategoryID" value="@categoryid" /><br />
-            <input type="text" id="QuantityPerUnit" name="QuantityPerUnit" value="@qtyperunit" /><br />
-            <input type="text" id="UnitPrice" name="UnitPrice" value="@unitprice" /><br />
-            <input type="text" id="UnitsInStock" name="UnitsInStock" value="@unitsinstock" /><br />
-            <input type="text" id="UnitsOnOrder" name="UnitsOnOrder" value="@unitsonorder" /><br />
-            <input type="text" id="ReorderLevel" name="ReorderLevel" value="@reorderlevel" /><br />
-
+          
+            <input type="text"
+                   id="ProductName" name="ProductName"
+                   value="@productname" /><br />
+            <input type="text"
+                   id="SupplierID" name="SupplierID"
+                   value="@supplierid" /><br />
+            <input type="text"
+                   id="CategoryID" name="CategoryID"
+                   value="@categoryid" /><br />
+            <input type="text"
+                   id="QuantityPerUnit" name="QuantityPerUnit"
+                   value="@quantityperunit" /><br />
+            <input type="text"
+                   id="UnitPrice" name="UnitPrice"
+                   value="@unitprice" /><br />
+            <input type="text"
+                   id="UnitsInStock" name="UnitsInStock"
+                   value="@unitsinstock" /><br />
+            <input type="text"
+                   id="UnitsOnOrder" name="UnitsOnOrder"
+                   value="@unitsonorder" /><br />
+            <input type="text"
+                   id="ReorderLevel" name="ReorderLevel"
+                   value="@reorderlevel" /><br />
             <br />
-
         </div>
-
-
     </div>
-
-
     <div class="row">
         <div class="text-center">
-
             <input type="submit" id="FormButton" name="FormButton"
-                   class="btn btn-primary" value="Add" />&nbsp;&nbsp;
-
+                   class="btn btn-primary" value="Add" />
             <input type="submit" id="FormButton" name="FormButton"
                    class="btn" value="Clear" />
         </div>
     </div>
-
-
-
-
 </form>
