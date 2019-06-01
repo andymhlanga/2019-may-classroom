@@ -1,7 +1,7 @@
 ﻿@{
     Page.Title = "Product Search";
     Layout = "~/_Layout.cshtml";
-    
+
     var productsearch = Request.Form["ProductSearch"];
 
     var db = Database.Open("NWDB");
@@ -58,9 +58,9 @@
                 }
             }
         </div>
-      @* Since the webgrid is in the form method post the webgrid method which is get, causes a conflict in paging
-         the following script causes a post to happen on the webgrids paging
-          *@
+      @* Since the webgrid is in the form (method: post), the webgrid's method
+          which is Get, causes a conflict in paging
+         The following script causes a post to happen on the webgrid's paging*@
         <script type="text/javascript">
             var links = $('a[href*=page], a[href*=sort]'), form = $('form');
             links.click(function () {
@@ -68,7 +68,6 @@
                 $(this).attr("href", "javascript:");
                 form.submit();
             });
-                
         </script>
     </form>
 </div> 

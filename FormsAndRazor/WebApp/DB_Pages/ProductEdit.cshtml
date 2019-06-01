@@ -3,11 +3,10 @@
     Layout = "~/_Layout.cshtml";
 
 
-
     var pid = Request.QueryString["pid"];
     if (pid.IsEmpty())
     {
-        Response.Redirect("ProductSearch.cshtml");       //send something if not found send it back
+        Response.Redirect("ProductSearch.cshtml");
     }
     var productid = Request.Form["ProductID"];
     var productname = Request.Form["ProductName"];
@@ -63,148 +62,134 @@
 }
 @if (IsPost)
 {
+    //which button did the user press
     if (thebutton.Equals("cancel"))
     {
-        <p>Action Cancelled.<a href="ProductSearch.cshtml">Back to Product Search</a></p>
+        <p>Action cancelled. <a href="ProductSearch.cshtml">Back to product Search</a></p>
     }
     else if (thebutton.Equals("delete"))
     {
-
-        //(ensure the pk value is present)
+        //ensure the pkey value is physically present
         //if present
-        //create the delete comman physical or update comman if logical
-        //execute
-        //check results
-        //no changes: specific no change message
-        //yes changes: specific yes change message
-
-        try
-        {
-
-            var updatecommand = @"UPDATE Products
-                                SET Discontinued = @0,
-                                    WHERE ProductID = @1";
-
-
-            var rowsaffected = db.Execute(updatecommand, discontinued, productid);
-
-
-            if (rowsaffected == 0)
-            {
-                productid = "";
-                <p>
-                    <span style="color:dodgerblue">The product was not discontinued</span>
-                    <a href="ProductSearch.cshtml">Back to Product Search</a>
-                </p>
-            }
-            else
-            {
-                <p>
-                    <span style="color:dodgerblue">@productname is dicontinued</span>
-                    <a href="ProductSearch.cshtml">Back to Product Search</a>
-                </p>
-
-                //optional for the physical delete 
-                //empty all fields
-
-                //productid = "";
-                //productname = "";
-                //supplierid = "";
-                //categoryid = "";
-                //quantityperunit = "";
-                //unitprice = "";
-                //unitsinstock = "";
-                //unitsonorder = "";
-                //reorderlevel = "";
-                //discontinued = "0";
-            }
-
-        }
-        catch (Exception ex)
-        {
-            <p>
-                <span style="color:firebrick">@ex.Message</span>
-                <a href="ProductSearch.cshtml">Back to Product Search</a>
-            </p>
-        }
-    }
-    else
-    {
-
-        //validation (ensure the pk value is present)
-        //If good data then we are going to create update command
-        //execute
-        //check results
-        //no changes: specific no change message
-        //yes changes: specific yes change message
-
+        //    create delete command (physical) or update command (logical)
+        //    execute
+        //    check results
+        //      no changes : specific no change msg
+        //      yes changes : specific yes change msg
         if (string.IsNullOrEmpty(productid))
         {
-            <p>
-                <span style="color:dodgerblue">No Product selected Return to search for another product</span>
-                <a href="ProductSearch.cshtml">Back to Product Search</a>
-            </p>
+            <p><span style="color:dodgerblue">No product selected. Return to search for another product. </span><a href="ProductSearch.cshtml">Back to product Search</a> </p>
         }
         else
         {
             try
             {
+                //Products are a logical delete
 
+                //logical delete
                 var updatecommand = @"UPDATE Products
-                                    SET ProductName = @0,
-                                    SupplierID = @1,
-                                    CategoryID = @2,
-                                    QuantityPerUnit = @3,
-                                    UnitPrice = @4,
-                                    UnitsInStock = @5,
-                                    UntitsOnOrder = @6,
-                                    ReorderLevel = @7,
-                                    Discontinued = @8,
-                                    WHERE ProductID = @9";
+                        SET Discontinued = @0
+                        WHERE ProductId = @1";
+                var rowsaffected = db.Execute(updatecommand,
+                                    discontinued, productid);
 
-
-                var rowsaffected = db.Execute(updatecommand, productname,
-                  string.IsNullOrEmpty(supplierid) ? null : supplierid,
-                                          string.IsNullOrEmpty(categoryid) ? null : categoryid,
-                                          string.IsNullOrEmpty(quantityperunit) ? null : quantityperunit,
-                                          string.IsNullOrEmpty(unitprice) ? null : unitprice,
-                                          string.IsNullOrEmpty(unitsinstock) ? null : unitsinstock,
-                                          string.IsNullOrEmpty(unitsonorder) ? null : unitsonorder,
-                                          string.IsNullOrEmpty(reorderlevel) ? null : reorderlevel,
-                                         discontinued,productid);
+                //or
+                //
+                //physical delete
+                //var deletecommand = @"Delete Products
+                //                      WHERE ProductId = @0";
+                //var rowsaffected = db.Execute(deletecommand, productid);
 
                 if (rowsaffected == 0)
                 {
-                    <p>
-                        <span style="color:dodgerblue">No Update Done Product Not Found</span>
-                        <a href="ProductSearch.cshtml">Back to Product Search</a>
-                    </p>
+                    productid = "";
+                    <p><span style="color:dodgerblue">Product was not discontinued. Product not found. Return to search for another product. </span><a href="ProductSearch.cshtml">Back to product Search</a> </p>
                 }
                 else
                 {
-                    <p>
-                        <span style="color:dodgerblue">@productname Not Found</span>
-                        <a href="ProductSearch.cshtml">Back to Product Search</a>
-                    </p>
+                    <p><span style="color:green">@productname is discontinued.</span></p>
+
+                    //optionally for a physical delete
+                    //you could empty all fields
+                    //productid = "";
+                    //productname = "";
+                    //supplierid = "";
+                    //categoryid = "";
+                    //quantityperunit = "";
+                    //unitprice = "";
+                    //unitsinstock = "";
+                    //unitsonorder = "";
+                    //reorderlevel = "";
+                    //discontinued = "0";
+
+                    //logical delete
+                    discontinued = "1";
                 }
 
             }
             catch (Exception ex)
             {
-                <p>
-                    <span style="color:firebrick">@ex.Message</span>
-                    <a href="ProductSearch.cshtml">Back to Product Search</a>
-                </p>
+                <p><span style="color:firebrick"> @ex.Message. </span> </p>
             }
         }
+    }
+    else
+    {
 
+        //validation (ensure the pkey value is physically present)
+        //if good data
+        //    create update command
+        //    execute
+        //    check results
+        //      no changes : specific no change msg
+        //      yes changes : specific yes change msg
+        if (string.IsNullOrEmpty(productid))
+        {
+            <p><span style="color:dodgerblue">No product selected. Return to search for another product. </span><a href="ProductSearch.cshtml">Back to product Search</a> </p>
+        }
+        else
+        {
+            try
+            {
+                var updatecommand = @"UPDATE Products
+                        SET ProductName = @0,
+                            SupplierID = @1,
+                            CategoryID = @2,
+                            QuantityPerUnit = @3,
+                            UnitPrice = @4,
+                            UnitsInStock = @5,
+                            UnitsOnOrder = @6,
+                            ReorderLevel = @7,
+                            Discontinued = @8
+                        WHERE ProductId = @9";
+                var rowsaffected = db.Execute(updatecommand, productname,
+                                    string.IsNullOrEmpty(supplierid) ? null : supplierid,
+                                    string.IsNullOrEmpty(categoryid) ? null : categoryid,
+                                    string.IsNullOrEmpty(quantityperunit) ? null : quantityperunit,
+                                    string.IsNullOrEmpty(unitprice) ? null : unitprice,
+                                    string.IsNullOrEmpty(unitsinstock) ? null : unitsinstock,
+                                    string.IsNullOrEmpty(unitsonorder) ? null : unitsonorder,
+                                    string.IsNullOrEmpty(reorderlevel) ? null : reorderlevel,
+                                    discontinued, productid);
+                if (rowsaffected == 0)
+                {
+                    productid = "";
+                    <p><span style="color:dodgerblue">No update done. Product not found. Return to search for another product. </span><a href="ProductSearch.cshtml">Back to product Search</a> </p>
+                }
+                else
+                {
+                    <p><span style="color:green">@productname updated.</span></p>
+                }
 
-
-
-
+            }
+            catch (Exception ex)
+            {
+                <p><span style="color:firebrick"> @ex.Message. </span> </p>
+            }
+        }
     }
 }
-else //for IsPost = false page being shown for first time
+else //for IsPost = false
 {
     //if this page is being shown for the "first time"
     //the page accesses the database for the current record
@@ -244,7 +229,6 @@ else //for IsPost = false page being shown for first time
             <label id="label10" for="Discontinued">Discontinued</label><br />
         </div>
         <div class="col-sm-6">
-            <!--For the product id to be read only specify here -->
             <input type="text" name="ProductID" value="@productid" readonly /><br />
             <input type="text" name="ProductName" value="@productname" /><br />
             <select name="SupplierList">
@@ -291,9 +275,14 @@ else //for IsPost = false page being shown for first time
         </div>
         <div class="row text-center">
             <button type="submit" name="theButton" id="theUpdate" class="btn btn-primary" value="update">Update</button>&nbsp;&nbsp;&nbsp;
-            <button type="submit" name="theButton" id="theDelete" class="btn btn-primary" value="delete">Delete</button>&nbsp;&nbsp;&nbsp;
-            <button type="submit" name="theButton" id="theCancel" class="btn btn-primary" value="cancel">Cancel</button>
+            <button type="submit" name="theButton" id="theDelete" class="btn btn-primary" value="delete" formnovalidate>Delete</button>&nbsp;&nbsp;&nbsp;
+            <button type="submit" name="theButton" id="theCancel" class="btn btn-primary" value="cancel" formnovalidate>Cancel</button>
         </div>
-
+        <script type="text/javascript">
+            document.getElementById("theDelete").onclick = ConfirmDelete;
+            function ConfirmDelete() {
+                return confirm("Are you sure you want to discontinue @productname?");
+            }
+        </script>
     </form>
 </div>
