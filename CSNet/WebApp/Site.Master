@@ -46,15 +46,42 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Application name</a>
+                    <a class="navbar-brand" runat="server" href="~/">Andy&Co. </a>
                 </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
+                <div class="navbar-collapse collapse">               
+                   <!-- This is the default supply menu when the app is first created-->
+                   <%-- <ul class="nav navbar-nav">
+                        <li><a runat="server" href="~/">Home</a></li> 
                         <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                          <li><a runat="server" href="~/SamplePages/Hello">Hello Page</a></li>
-                    </ul>
+                    </ul>--%>
+
+
+                    <!-- you can replace the defualt menu with your own menu file to use this you will need a 
+                        a) asp:Menu control
+                        b) asp:SiteMapDataSOurse control-->
+
+                    <asp:Menu ID="BasicASPMenu" runat="server"  DataSourceID="SiteNav" Orientation="Horizontal"
+                        StaticDisplayLevels="1"
+                        StaticMenuStyle-CssClass="nav navbar-nav" 
+                        StaticSelectedStyle-CssClass="active"
+                        dynamicmenustyle-CssClass="dropdown-menu"
+                        IncludeStyleBlock="false"
+                        EnableViewState="false"
+                        >  
+
+
+                    </asp:Menu>
+
+
+
+                    <asp:SiteMapDataSource ID="SiteNav" runat="server" 
+                        ShowStartingNode ="false"/>   
+                    <!-- add show starting node to false this will supress the config file
+                        the control via web.config by defualt looks for meneu file -->
+                  
+
                 </div>
             </div>
         </div>
@@ -63,7 +90,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Andy&Co. A Superior Coding Company</p>
             </footer>
         </div>
 
