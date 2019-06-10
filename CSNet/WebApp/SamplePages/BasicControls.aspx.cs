@@ -116,6 +116,37 @@ namespace WebApp.SamplePages
         protected void LinkButtonSubmit_Click(object sender, EventArgs e)
         {
             //enter your code
+
+        //test for the prompt on the ddl
+        //the prompt is in the first row of the ddl (index 0)
+
+            if (CollectionList.SelectedIndex == 0)
+            {
+
+                MessageLabel.Text = "Enter a course number";
+
+            }
+            else
+                {
+                string numberchoice = CollectionList.SelectedValue;
+                TextBoxNumberChoice.Text = numberchoice;
+                RadioButtonListChoice.SelectedValue = numberchoice;
+
+                if (numberchoice.Equals("2") || numberchoice.Equals("4"))
+                {
+                    CheckBoxChoice.Checked = true;
+                }
+                else
+                {
+
+                }
+
+
+                DisplayReadOnly.Text = CollectionList.SelectedItem.Text + " at Index" + CollectionList.SelectedIndex + " has a value of " + CollectionList.SelectedValue;
+
+
+
+            }
         }
 
     }
