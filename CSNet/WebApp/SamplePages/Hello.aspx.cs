@@ -11,7 +11,7 @@ namespace WebApp.SamplePages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            MessageArea.Text = "what ever I want";
+            MessageArea.Text = "whatever i want";
         }
 
         protected void Reset_Click(object sender, EventArgs e)
@@ -19,9 +19,9 @@ namespace WebApp.SamplePages
             MessageArea.Text = "";
         }
 
-        protected void Submit_Click(object sender, EventArgs e)
+        protected void PressMe_Click(object sender, EventArgs e)
         {
-            MessageArea.Text = "Andiswa Mhlanga";
+            MessageArea.Text = "Don Welch";
         }
     }
 }

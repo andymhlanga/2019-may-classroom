@@ -11,58 +11,47 @@ namespace WebApp.SamplePages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //clear out all old messages 
+            //clear all old messages
             MessageLabel.Text = "";
-
-
         }
 
         protected void Submit_Click(object sender, EventArgs e)
         {
             string msg = "";
-            msg += "Name  = " + FullName.Text;
-            msg += "Email  = " + Email.Text;
-            msg += "Phone  = " + PhoneNumber.Text;
-            msg += "Time:  = " + (FullOrPartTime.SelectedValue.Equals("1")?"Full Time (1)":"Part Time (2)");
-
-            msg += " Jobs =";
+            msg += "Name = " + FullName.Text;
+            msg += " Email = " + EmailAddress.Text;
+            msg += " Phone = " + PhoneNumber.Text;
+            msg += " Time = " + (FullOrPartTime.SelectedValue.Equals("1") ? "Full Time (1)" : "Part Time (2)");
+            //process the checkboxlist
+            msg += " Jobs = ";
             bool found = false;
-            foreach (ListItem jobrow in Jobs.Items)
+            foreach(ListItem jobrow in Jobs.Items)
             {
                 if (jobrow.Selected)
                 {
                     msg += jobrow.Text + " ";
                     found = true;
                 }
-
             }
             if (!found)
             {
-                msg += "You did not select a job application rejected";
-
+                msg = "You did not select a job. Application rejected.";
             }
-
             MessageLabel.Text = msg;
         }
 
         protected void Clear_Click(object sender, EventArgs e)
         {
-
-            //empt all text boxes and remove radio button and checkbox choices
-            //the ID you gave your control is your variable is your variable in your coding
-            //remember objects and setting property 
+            //empty all textboxs and remove RabioButton and CheckBox choices
             FullName.Text = "";
-            Email.Text = "";
+            EmailAddress.Text = "";
             PhoneNumber.Text = "";
-            //One technique to reset the radio button list is to set the index to a non existent list to -1
+            //one technique in emptying a List is to set the index
+            //    to -1;
             FullOrPartTime.SelectedIndex = -1;
-
-            //a second technique to reset the radion buttons is to use a method of the object call clear selection
-
+            //a second technique is to use a method of the object called
+            //    ClearSelection()
             Jobs.ClearSelection();
-
-
-            
         }
     }
 }
