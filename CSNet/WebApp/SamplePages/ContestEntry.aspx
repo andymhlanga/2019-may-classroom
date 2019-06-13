@@ -153,12 +153,21 @@
         <div class="col-md-6">   
             <div class="col-md-offset-2">
                 <p>
-                    <asp:Button ID="Submit" runat="server" Text="Submit"  />&nbsp;&nbsp;
-                    <asp:Button ID="Clear" runat="server" Text="Clear"  />
+                    <asp:Button ID="Submit" runat="server" Text="Submit" OnClick="Submit_Click"  />&nbsp;&nbsp;
+                    <asp:Button ID="Clear" runat="server" Text="Clear" OnClick="Clear_Click"  CausesValidation="false"/>
                 </p>
-                <asp:Label ID="Message" runat="server" ></asp:Label><br />
+                <asp:Label ID="Message" runat="server" ></asp:Label><br /><br />
               
             </div>
+
+            <asp:GridView ID="EntriesList" runat="server"
+                BorderStyle="None" GridLines="Horizontal" Caption="Contest Entries">
+
+                <EmptyDataTemplate>
+                 No contest entries at this time
+                </EmptyDataTemplate>
+
+            </asp:GridView>
         </div>
     </div>
     <script src="../Scripts/bootwrap-freecode.js"></script>
