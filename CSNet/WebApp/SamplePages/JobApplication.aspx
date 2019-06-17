@@ -12,6 +12,17 @@
                     bootstrap class alert with an alert-info coloring. Data will be collected
                     and displayed in a string.
                 </blockquote>
+
+            <%--       <asp:RangeValidator id="Range1"
+           ControlToValidate="TextBox1"
+           MinimumValue="1"
+           MaximumValue="10"
+           Type="Integer"
+           EnableClientScript="false"
+           Text="The value must be from 1 to 10!"
+           runat="server"/>--%>
+
+
             </div>
         </div>
     </div>
@@ -37,7 +48,7 @@
                 <asp:Label ID="Label4" runat="server" Text="Time"
                      AssociatedControlID="FullOrPartTime"></asp:Label>
                 <asp:RadioButtonList ID="FullOrPartTime" runat="server"
-                     RepeatDirection="Horizontal" RepeatLayout="Flow">
+                     RepeatDirection="Vertical" RepeatLayout="Flow">
 
                     <asp:ListItem Value="1">Full Time&nbsp;&nbsp;</asp:ListItem>
                     <asp:ListItem Value="2">Part Time</asp:ListItem>
