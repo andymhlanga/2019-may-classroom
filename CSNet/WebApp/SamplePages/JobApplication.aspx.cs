@@ -9,6 +9,7 @@ namespace WebApp.SamplePages
 {
     public partial class JobApplication : System.Web.UI.Page
     {
+        bool validot = true;
         protected void Page_Load(object sender, EventArgs e)
         {
             //clear all old messages
@@ -17,6 +18,32 @@ namespace WebApp.SamplePages
 
         protected void Submit_Click(object sender, EventArgs e)
         {
+           
+
+            //if (string.IsNullOrEmpty(FullName.Text))
+            //{
+            //  MessageLabel.Text  = "Please enter first name ";
+            //    validot = false;
+            //} 
+            //else
+            //if (string.IsNullOrEmpty(EmailAddress.Text))
+            //{
+            //    MessageLabel.Text = "Please enter email ";
+            //    validot = false;
+            //}
+            //else if (string.IsNullOrEmpty(PhoneNumber.Text))
+            //{
+            //    MessageLabel.Text = "Please enter phone numeber ";
+            //    validot = false;
+            //}
+
+
+
+
+
+
+
+
             string msg = "";
             msg += "Name = " + FullName.Text;
             msg += " Email = " + EmailAddress.Text;
