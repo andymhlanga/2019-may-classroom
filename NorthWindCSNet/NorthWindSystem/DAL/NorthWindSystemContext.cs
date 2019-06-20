@@ -32,7 +32,9 @@ namespace NorthWindSystem.DAL
         //each Dbset<T> will hold the data transfer for that partivular entity class
         //each Dbset<t> definition is a property of this context class
         //course standard: Dbset<T> will be plural
-        public DbSet<Product> Priducts { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
     }
 
 }

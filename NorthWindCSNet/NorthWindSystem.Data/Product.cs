@@ -14,12 +14,12 @@ namespace NorthWindSystem.Data
     //the default access type is private you must alter this to public or else it will be inaccessible
     //add refences Sys.Comp.Model.Data.Annot
 
-    //use a data annotation to poin this class to the appropiate sql table 
+    //use a data annotation to point this class to the appropiate sql table 
     [Table("Products")]
     public class Product
     {
 
-        //private data memnmebrs
+        //private data members
 
 
         private string _QuantityPerUnit;
@@ -31,20 +31,26 @@ namespace NorthWindSystem.Data
         //some properties wll need annotation
         //Primary Key
         //[Key] default sql identity field
-        //[Key,DatabaseGenerated(DatabaseGenerated.None)]) non identity pkey
-        //[Key,Column(Order=1)][Key,Column(Order=2)].... compund pkey
+        //[Key,DatabaseGenerated(DatabaseGeneratedOption.None)]) non identity pkey
+        //[Key,Column(Order=1)][Key,Column(Order=2)].... compound pkey
 
         //Procudts is an sql identity pkey field
 
         [Key]
         public int ProductID { get; set; }
 
+        //entity properties can have their own validation placed on the property
 
+
+        [Required(ErrorMessage = "Product name is required")]
+        [StringLength(160,ErrorMessage= "Product is limited to 160 characters")]
         public string ProductName { get; set; }
-        public int? SupplierID { get; set; } // sql field is nullable remeber ?
+        
+        public int? SupplierID { get; set; } // sql field is nullable rembmer ?
         public int? CategoryID { get; set; }
 
         //nullable strings must be fully implemented
+        [StringLength(25, ErrorMessage = "Qty per unit is limited to 160 characters")]
         public string QuantityPerUnit
         {
             get
@@ -65,10 +71,13 @@ namespace NorthWindSystem.Data
         }
 
 
-
+        [Range(0.00,double.MaxValue,ErrorMessage ="Unit price must be 0.0 or greater")]
         public decimal? UnitPrice { get; set; }
+        [Range(0, Int16.MaxValue, ErrorMessage = "Units in stock must be 0 or greater")]
         public Int16? UnitsInStock { get; set; }
+        [Range(0, Int16.MaxValue, ErrorMessage = "Units on order must be 0 or greater")]
         public Int16? UnitsOnOrder { get; set; }
+        [Range(0, Int16.MaxValue, ErrorMessage = "Reorder level  must be 0 or greater")]
         public Int16? ReorderLevel { get; set; }
         public bool Discontinued { get; set; }
 

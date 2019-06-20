@@ -48,12 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\CategoryController.cs" />
+    <Compile Include="BLL\ProductController.cs" />
+    <Compile Include="BLL\SupplierController.cs" />
     <Compile Include="DAL\NorthWindSystemContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLL\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\NorthWindSystem.Data\NorthWindSystem.Data.csproj">
       <Project>{23de280f-9e2c-4a01-990b-5a3177d04215}</Project>
