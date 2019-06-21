@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NorthWindApp.SamplePages {
+namespace NorthwindApp.SamplePages {
     
     
     public partial class SimpleQuery {
@@ -22,13 +22,22 @@ namespace NorthWindApp.SamplePages {
         protected global::System.Web.UI.WebControls.DropDownList ProductList;
         
         /// <summary>
-        /// Button1 control.
+        /// Fetch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button Fetch;
+        
+        /// <summary>
+        /// MessageLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MessageLabel;
         
         /// <summary>
         /// Label1 control.
@@ -58,13 +67,13 @@ namespace NorthWindApp.SamplePages {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// ProductName control.
+        /// Productname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ProductName;
+        protected global::System.Web.UI.WebControls.TextBox Productname;
         
         /// <summary>
         /// Label3 control.
@@ -112,13 +121,13 @@ namespace NorthWindApp.SamplePages {
         protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// QuantityOnOrder control.
+        /// UnitsInStock control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox QuantityOnOrder;
+        protected global::System.Web.UI.WebControls.TextBox UnitsInStock;
         
         /// <summary>
         /// Label6 control.
@@ -130,13 +139,13 @@ namespace NorthWindApp.SamplePages {
         protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// TextBox5 control.
+        /// UnitsOnOrder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.TextBox UnitsOnOrder;
         
         /// <summary>
         /// Label7 control.
@@ -148,12 +157,30 @@ namespace NorthWindApp.SamplePages {
         protected global::System.Web.UI.WebControls.Label Label7;
         
         /// <summary>
-        /// TextBox6 control.
+        /// ReorderLevel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox6;
+        protected global::System.Web.UI.WebControls.TextBox ReorderLevel;
+        
+        /// <summary>
+        /// Label8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label8;
+        
+        /// <summary>
+        /// Discontinued control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox Discontinued;
     }
 }

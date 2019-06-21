@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{721A650A-6EDE-47E4-A99E-98F9E5AEAF61}</ProjectGuid>
+    <ProjectGuid>{D994DBC8-817F-40AB-9079-2C4092016897}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NorthWindApp</RootNamespace>
-    <AssemblyName>NorthWindApp</AssemblyName>
+    <RootNamespace>NorthwindApp</RootNamespace>
+    <AssemblyName>NorthwindApp</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -272,13 +272,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NorthWindSystem.Data\NorthWindSystem.Data.csproj">
-      <Project>{23de280f-9e2c-4a01-990b-5a3177d04215}</Project>
-      <Name>NorthWindSystem.Data</Name>
+    <ProjectReference Include="..\NorthwindSystem.Data\NorthwindSystem.Data.csproj">
+      <Project>{afbf8bd1-172c-43e7-8ba9-9a30408764ff}</Project>
+      <Name>NorthwindSystem.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NorthWindSystem\NorthWindSystem.csproj">
-      <Project>{4c88e2f1-6c5a-4500-a8d3-b83f5030396b}</Project>
-      <Name>NorthWindSystem</Name>
+    <ProjectReference Include="..\NorthwindSystem\NorthwindSystem.csproj">
+      <Project>{9ade41df-2793-440a-83aa-c21a61aaeedb}</Project>
+      <Name>NorthwindSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -294,9 +294,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>51219</DevelopmentServerPort>
+          <DevelopmentServerPort>55720</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51219/</IISUrl>
+          <IISUrl>http://localhost:55720/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

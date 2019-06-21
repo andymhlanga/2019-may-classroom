@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.FriendlyUrls.Resolvers;
 
-namespace NorthWindApp
+namespace NorthwindApp
 {
     public partial class ViewSwitcher : System.Web.UI.UserControl
     {

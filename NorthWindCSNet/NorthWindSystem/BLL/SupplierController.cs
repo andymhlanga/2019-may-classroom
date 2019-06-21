@@ -1,37 +1,32 @@
-﻿using NorthWindSystem.DAL;
-using NorthWindSystem.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NorthWindSystem.BLL
+#region Additional Namespaces
+using NorthwindSystem.Data;
+using NorthwindSystem.DAL;
+#endregion
+
+namespace NorthwindSystem.BLL
 {
-   public class SupplierController
+    public class SupplierController
     {
-
-        //Entity framework extension method will retrieve all records for the Dbset OF <t>
-
-        public List<Product> Product_List()
+        public List<Supplier> Supplier_List()
         {
-            using (var context = new NorthWindSystemContext())
+            using (var context = new NorthwindSystemContext())
             {
-
-                //ensure you add the .TOList to your property.
-                return context.Products.ToList();
+                return context.Suppliers.ToList();
             }
         }
 
-
-
-        public Product Product_FindByID(int productid)
+        public Supplier Supplier_FindByID(int supplierid)
         {
-            using (var context = new NorthWindSystemContext())
+            using (var context = new NorthwindSystemContext())
             {
-                return context.Products.Find(productid);
+                return context.Suppliers.Find(supplierid);
             }
         }
-
     }
 }

@@ -1,41 +1,32 @@
-﻿using NorthWindSystem.DAL;
-using NorthWindSystem.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NorthWindSystem.BLL
+#region Additional Namespaces
+using NorthwindSystem.Data;
+using NorthwindSystem.DAL;
+#endregion
+
+namespace NorthwindSystem.BLL
 {
     public class CategoryController
     {
-        //Entity framework extension method will retrieve all records for the Dbset OF <t>
-
-        public List<Category> Product_List()
+        public List<Category> Category_List()
         {
-            using (var context = new NorthWindSystemContext())
+            using (var context = new NorthwindSystemContext())
             {
-
-                //ensure you add the .TOList to your property.
-                return context.Products.ToList();
+                return context.Categories.ToList();
             }
         }
 
-
-
-        public Product Product_FindByID(int productid)
+        public Category Category_FindByID(int categoryid)
         {
-            using (var context = new NorthWindSystemContext())
+            using (var context = new NorthwindSystemContext())
             {
-                return context.Products.Find(productid);
+                return context.Categories.Find(categoryid);
             }
         }
-
-
-
-
-
-
     }
 }
