@@ -163,6 +163,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="SamplePages\FilterQuery.aspx" />
     <Content Include="SamplePages\SimpleQuery.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -228,6 +229,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SamplePages\FilterQuery.aspx.cs">
+      <DependentUpon>FilterQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SamplePages\FilterQuery.aspx.designer.cs">
+      <DependentUpon>FilterQuery.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SamplePages\SimpleQuery.aspx.cs">
       <DependentUpon>SimpleQuery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

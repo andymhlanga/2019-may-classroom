@@ -22,6 +22,8 @@ namespace NorthwindApp.SamplePages
             if (!Page.IsPostBack)
             {
                 BindProductList();
+                BindSupplierList();
+                BindCategoryList();
             }
         }
 
@@ -53,6 +55,44 @@ namespace NorthwindApp.SamplePages
                 MessageLabel.Text = ex.Message;
             }
         }
+
+        protected void BindSupplierList()
+        {
+            try
+            {
+                SupplierController sysmgr = new SupplierController();
+                List<Supplier> datainfo = sysmgr.Supplier_List();
+                datainfo.Sort((x, y) => x.CompanyName.CompareTo(y.CompanyName));
+                SupplierList.DataSource = datainfo;
+                SupplierList.DataTextField = nameof(Supplier.CompanyName);
+                SupplierList.DataValueField = nameof(Supplier.SupplierID);
+                SupplierList.DataBind();
+                SupplierList.Items.Insert(0, "select ...");
+            }
+            catch (Exception ex)
+            {
+                MessageLabel.Text = ex.Message;
+            }
+        }
+
+        protected void BindCategoryList()
+        {
+            try
+            {
+                CategoryController sysmgr = new CategoryController();
+                List<Category> datainfo = sysmgr.Category_List();
+                datainfo.Sort((x, y) => x.CategoryName.CompareTo(y.CategoryName));
+                CategoryList.DataSource = datainfo;
+                CategoryList.DataTextField = nameof(Category.CategoryName);
+                CategoryList.DataValueField = nameof(Category.CategoryID);
+                CategoryList.DataBind();
+                CategoryList.Items.Insert(0, "select ...");
+            }
+            catch (Exception ex)
+            {
+                MessageLabel.Text = ex.Message;
+            }
+        }
         protected void Fetch_Click(object sender, EventArgs e)
         {
             if (ProductList.SelectedIndex == 0)
@@ -79,6 +119,22 @@ namespace NorthwindApp.SamplePages
                         //data: move values to output fields
                         ProductID.Text = datainfo.ProductID.ToString();
                         Productname.Text = datainfo.ProductName;
+                        if (datainfo.SupplierID.HasValue)
+                        {
+                            SupplierList.SelectedValue = datainfo.SupplierID.ToString();
+                        }
+                        else
+                        {
+                            SupplierList.SelectedIndex = 0;
+                        }
+                        if (datainfo.CategoryID.HasValue)
+                        {
+                            CategoryList.SelectedValue = datainfo.CategoryID.ToString();
+                        }
+                        else
+                        {
+                            CategoryList.SelectedIndex = 0;
+                        }
                         QuantityPerUnit.Text = datainfo.QuantityPerUnit == null ? "" : datainfo.QuantityPerUnit;
                         UnitPrice.Text = datainfo.UnitPrice == null ? "" : datainfo.UnitPrice.ToString();
                         UnitsInStock.Text = datainfo.UnitsInStock == null ? "" : datainfo.UnitsInStock.ToString();

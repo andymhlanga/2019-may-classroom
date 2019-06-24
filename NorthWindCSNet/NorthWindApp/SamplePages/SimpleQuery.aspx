@@ -27,6 +27,16 @@
             <asp:TextBox ID="Productname" runat="server"
                      ></asp:TextBox>
 
+            <asp:Label ID="Label9" runat="server" Text="Supplier:"
+                 AssociatedControlID="SupplierList">
+            </asp:Label>
+            <asp:DropDownList ID="SupplierList" runat="server"></asp:DropDownList>
+
+            <asp:Label ID="Label10" runat="server" Text="Category:"
+                 AssociatedControlID="CategoryList">
+            </asp:Label>
+            <asp:DropDownList ID="CategoryList" runat="server"></asp:DropDownList>
+
             <asp:Label ID="Label3" runat="server" Text="Qty/Unit"
                  AssociatedControlID="QuantityPerUnit">
             </asp:Label>
