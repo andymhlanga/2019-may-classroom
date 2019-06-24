@@ -17,55 +17,46 @@
     <div class="row">
         <br /><br />
         <asp:GridView ID="ProductList" runat="server"
-            CssClass="table table-striped" GridLines="horizontal" BorderStyle="Groove" Caption="Products By Name" AutoGenerateColumns="False">
+            CssClass="table table-striped" GridLines="Horizontal"
+            BorderStyle="None" Caption="Products by Name" 
+            AutoGenerateColumns="False">
 
             <Columns>
                 <asp:TemplateField HeaderText="ID">
                     <ItemTemplate>
-                    <asp:Label ID="ProductID" runat="server" Text='<%# Eval("ProductID")%>' Width="10"></asp:Label>                    
-                    </ItemTemplate>                    
+                        <asp:Label ID="ProductID" runat="server" 
+                            Text='<%# Eval("ProductID") %>' Width="50">
+                        </asp:Label>
+                    </ItemTemplate>
                     <ItemStyle HorizontalAlign="Right"></ItemStyle>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Name">
-                        <ItemTemplate>
-                    <asp:Label ID="ProductName" runat="server" Text='<%# Eval("ProductName")%>' Width="50"></asp:Label>                    
-                    </ItemTemplate>   
+                     <ItemTemplate>
+                        <asp:Label ID="ProductName" runat="server" 
+                            Text='<%# Eval("ProductName") %>' Width="300">
+                        </asp:Label>
+                    </ItemTemplate>
                     <ItemStyle HorizontalAlign="Left"></ItemStyle>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Supplier">
-                     <ItemTemplate>
-                    <asp:Label ID="SupplierID" runat="server" Text='<%# Eval("SupplierID")%>' Width="50"></asp:Label>                    
-                    </ItemTemplate>   
+                <asp:TemplateField HeaderText="Sup">
                     <ItemStyle HorizontalAlign="Right"></ItemStyle>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Category">
-                    <ItemTemplate>
-                    <asp:Label ID="CategoryID" runat="server" Text='<%# Eval("CategoryID")%>' Width="50"></asp:Label>                    
-                    </ItemTemplate>  
-                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                <asp:TemplateField HeaderText="Cat">
+                    <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Qty / Unit">
-                    <ItemTemplate>
-                    <asp:Label ID="QuantityPerUnit" runat="server" Text='<%# Eval("QuantityPerUnit")%>' Width="50"></asp:Label>                    
-                    </ItemTemplate>
+                <asp:TemplateField HeaderText="Qty/Unit">
                     <ItemStyle HorizontalAlign="Left"></ItemStyle>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="$">
-                      <ItemTemplate>
-                    <asp:Label ID="UnitPrice" runat="server" Text='<%# Eval("UnitPrice")%>' Width="50"></asp:Label>                    
-                    </ItemTemplate>
-                    <ItemStyle HorizontalAlign="Left"></ItemStyle>
+                    <ItemStyle HorizontalAlign="Right"></ItemStyle>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="QOH">
-                      <ItemTemplate>
-                    <asp:Label ID="UnitsInStock" runat="server" Text='<%# Eval("UnitsInStock")%>' Width="50"></asp:Label>                    
-                    </ItemTemplate>
+                <asp:TemplateField HeaderText="Qoh">
                     <ItemStyle HorizontalAlign="Right"></ItemStyle>
                 </asp:TemplateField>
             </Columns>
             <EmptyDataTemplate>
-             No Data for the product name. 
-         </EmptyDataTemplate>
+            No data for the product name.
+        </EmptyDataTemplate>
         </asp:GridView>
     </div>
 </asp:Content>
