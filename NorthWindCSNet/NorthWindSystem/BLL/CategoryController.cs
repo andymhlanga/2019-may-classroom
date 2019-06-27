@@ -7,12 +7,16 @@ using System.Threading.Tasks;
 #region Additional Namespaces
 using NorthwindSystem.Data;
 using NorthwindSystem.DAL;
+using System.ComponentModel;
 #endregion
 
 namespace NorthwindSystem.BLL
-{
+{    
+[DataObject]
     public class CategoryController
     {
+
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
         public List<Category> Category_List()
         {
             using (var context = new NorthwindSystemContext())
@@ -21,6 +25,7 @@ namespace NorthwindSystem.BLL
             }
         }
 
+        
         public Category Category_FindByID(int categoryid)
         {
             using (var context = new NorthwindSystemContext())
