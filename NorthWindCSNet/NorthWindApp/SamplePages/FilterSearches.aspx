@@ -63,7 +63,7 @@
                     <asp:TextBox ID="PartialProductNameV2" runat="server"></asp:TextBox>
 
                     <asp:Button ID="SearchProductsPartial" runat="server" Text="Search Products"
-                         />
+                        OnClick="SearchProductsPartial_Click" />
                     <br />
                     <br />
                     <asp:GridView ID="ProductGridViewV2" runat="server">
@@ -82,7 +82,7 @@
                     <asp:TextBox ID="PartialProductNameV3" runat="server"></asp:TextBox>
 
                     <asp:Button ID="SearchSupplierProductsPartial" runat="server"
-                        Text="Search Products"  />
+                        Text="Search Products" OnClick="SearchSupplierProductsPartial_Click" />
                     <br />
                     <br />
                     <asp:GridView ID="ProductGridViewV3" runat="server">
@@ -126,11 +126,11 @@
                     </blockquote>
                     <asp:Label ID="Label7" runat="server" Text="Supplier:"></asp:Label>
                     <asp:DropDownList ID="SupplierListV5" runat="server"></asp:DropDownList>
-                    <asp:Button ID="FindCategories" runat="server" Text="Categories?" />
+                    <asp:Button ID="FindCategories" runat="server" Text="Categories?"  />
                     <asp:Label ID="label8" runat="server" Text="Categories:"></asp:Label>
                     <asp:DropDownList ID="CategoryListV5" runat="server"></asp:DropDownList>
                     <asp:Button ID="FindSupplierCategoryProducts" runat="server" Text="Products?" 
-                         Enabled="false" />
+                          Enabled="false" />
                      <asp:Button ID="Reset" runat="server" Text="Reset"   />
                     <br />
                     <br />

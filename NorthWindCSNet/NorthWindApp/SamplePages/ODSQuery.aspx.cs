@@ -18,7 +18,7 @@ namespace NorthwindApp.SamplePages
         {
             if (string.IsNullOrEmpty(PartialNameArg.Text))
             {
-                MessageLabel.Text = "Enter a partial product name for lookup";
+                MessageLabel.Text = "Enter a partial product name to query.";
             }
         }
     }
