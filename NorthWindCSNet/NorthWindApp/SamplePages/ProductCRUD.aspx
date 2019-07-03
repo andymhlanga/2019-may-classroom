@@ -12,17 +12,22 @@
             </blockquote>
         </div>
     </div>
-
+    <asp:RequiredFieldValidator ID="RequiredProductName" runat="server" ErrorMessage="Product Name is required" Display="None" SetFocusOnError="true" ForeColor="Firebrick" ControlToValidate="ProductName"></asp:RequiredFieldValidator>
+    <asp:CompareValidator ID="CompareUnitPrice" runat="server" ErrorMessage="Unit price must be greater or equal to 0.00" Display="None" SetFocusOnError="true" ControlToValidate="UnitPrice" Operator="GreaterThanEqual" Type="Currency" ValueToCompare="0.00"></asp:CompareValidator>
+    <asp:CompareValidator ID="CompareUnitsInStock" runat="server" ErrorMessage="Units in stock must be greater or equal to 0" Display="None" SetFocusOnError="true" ControlToValidate="UnitsInStock" Operator="GreaterThanEqual" Type="Integer" ValueToCompare="0"></asp:CompareValidator>
+    <asp:CompareValidator ID="CompareUnitsOnOrder" runat="server" ErrorMessage="Units on Order must be greater or equal to 0" Display="None" SetFocusOnError="true" ControlToValidate="UnitsOnOrder" Operator="GreaterThanEqual" Type="Integer" ValueToCompare="0"></asp:CompareValidator>
+    <asp:CompareValidator ID="CompareReorderLevel" runat="server" ErrorMessage="Reorder Level must be greater or equal to 0" Display="None" SetFocusOnError="true" ControlToValidate="ReorderLevel" Operator="GreaterThanEqual" Type="Integer" ValueToCompare="0"></asp:CompareValidator>
    
       <%--  this will be the lookup control area--%>
          <div class="col-md-12"> 
              <asp:Label ID="Label5" runat="server" Text="Select a Product"></asp:Label>&nbsp;&nbsp;
              <asp:DropDownList ID="ProductList" runat="server"></asp:DropDownList>&nbsp;&nbsp;
-             <asp:LinkButton ID="Search" runat="server" Font-Size="X-Large" CausesValidation="false">Search</asp:LinkButton>&nbsp;&nbsp;
-             <asp:LinkButton ID="Clear" runat="server" Font-Size="X-Large" CausesValidation="false">Clear</asp:LinkButton>&nbsp;&nbsp;
-             <asp:LinkButton ID="AddProduct" runat="server" Font-Size="X-Large" CausesValidation="false">Add</asp:LinkButton>&nbsp;&nbsp;
-             <asp:LinkButton ID="UpdateProduct" runat="server" Font-Size="X-Large" >Update</asp:LinkButton>&nbsp;&nbsp;
-             <asp:LinkButton ID="RemoveProduct" runat="server" Font-Size="X-Large" >Remove</asp:LinkButton>&nbsp;&nbsp;
+             <asp:LinkButton ID="Search" runat="server" Font-Size="X-Large" CausesValidation="false" OnClick="Search_Click" >Search</asp:LinkButton>&nbsp;&nbsp;
+             <asp:LinkButton ID="Clear" runat="server" Font-Size="X-Large" CausesValidation="false" OnClick="Clear_Click" >Clear</asp:LinkButton>&nbsp;&nbsp;
+             <asp:LinkButton ID="AddProduct" runat="server" Font-Size="X-Large" OnClick="AddProduct_Click" >Add</asp:LinkButton>&nbsp;&nbsp;
+             <asp:LinkButton ID="UpdateProduct" runat="server" Font-Size="X-Large" OnClick="UpdateProduct_Click" >Update</asp:LinkButton>&nbsp;&nbsp;
+             <asp:LinkButton ID="RemoveProduct" runat="server" Font-Size="X-Large" CausesValidation="false"
+                 OnClientClick="return confirm('Are you sure you wish to discontinue this product.')" OnClick="RemoveProduct_Click">Discontinue</asp:LinkButton>&nbsp;&nbsp;
          
              <br /><br />
              <asp:DataList ID="Message" runat="server">
@@ -30,7 +35,7 @@
                     <%# Container.DataItem %>
                 </ItemTemplate>
              </asp:DataList>
-
+             <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
         
         </div>
       <%--  this will be the entity CRUD area--%>
@@ -52,7 +57,9 @@
 
                     <asp:Label ID="Label6" runat="server" Text="Category"
                      AssociatedControlID="CategoryList"></asp:Label>
-                <asp:DropDownList ID="CategoryList" runat="server"  Width="350px"></asp:DropDownList> 
+                <asp:DropDownList ID="CategoryList" runat="server" Width="350px" DataSourceID="CategoryListODS" DataTextField="CategoryName" DataValueField="CategoryID" AppendDataBoundItems="true">
+                    <asp:ListItem Value="0">select ...</asp:ListItem>
+                </asp:DropDownList> 
                
                     <asp:Label ID="Label7" runat="server" Text="Quantity/Unit"
                      AssociatedControlID="QuantityPerUnit"></asp:Label>
@@ -82,6 +89,6 @@
             </fieldset>
         </div>
        
-
+    <asp:ObjectDataSource ID="CategoryListODS" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="Category_List" TypeName="NorthwindSystem.BLL.CategoryController"></asp:ObjectDataSource>
     <script src="../Scripts/bootwrap-freecode.js"></script>
 </asp:Content>

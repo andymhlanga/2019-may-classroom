@@ -5,6 +5,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+#region Additional Namespaces
+using NorthwindSystem.BLL;
+using NorthwindSystem.Data;
+using System.Data.Entity.Validation;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Core;
+#endregion
+
 namespace WebApp.NorthwindPages
 {
     public partial class ProductCRUD : System.Web.UI.Page
@@ -16,6 +24,11 @@ namespace WebApp.NorthwindPages
             Message.DataSource = null;
             Message.DataBind();
 
+            if (!Page.IsPostBack)
+            {
+                BindProductList();
+                BindSupplierList();
+            }
         }
 
         //use this method to discover the inner most error message.
@@ -41,6 +54,131 @@ namespace WebApp.NorthwindPages
             Message.CssClass = cssclass;
             Message.DataSource = errormsglist;
             Message.DataBind();
+        }
+
+        protected void BindProductList()
+        {
+            try
+            {
+                ProductController sysmgr = new ProductController();
+                List<Product> datainfo = sysmgr.Product_List();
+                datainfo.Sort((x, y) => x.ProductName.CompareTo(y.ProductName));
+                ProductList.DataSource = datainfo;
+                ProductList.DataTextField = nameof(Product.ProductName);
+                ProductList.DataValueField = nameof(Product.ProductID);
+                ProductList.DataBind();
+                ProductList.Items.Insert(0, "select ...");
+            }
+            catch (DbUpdateException ex)
+            {
+                UpdateException updateException = (UpdateException)ex.InnerException;
+                if (updateException.InnerException != null)
+                {
+                    errormsgs.Add(updateException.InnerException.Message.ToString());
+                }
+                else
+                {
+                    errormsgs.Add(updateException.Message);
+                }
+                LoadMessageDisplay(errormsgs, "alert alert-danger");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        errormsgs.Add(validationError.ErrorMessage);
+                    }
+                }
+                LoadMessageDisplay(errormsgs, "alert alert-danger");
+            }
+            catch (Exception ex)
+            {
+                errormsgs.Add(GetInnerException(ex).ToString());
+                LoadMessageDisplay(errormsgs, "alert alert-danger");
+            }
+
+        }
+
+        protected void BindSupplierList()
+        {
+            try
+            {
+                SupplierController sysmgr = new SupplierController();
+                List<Supplier> datainfo = sysmgr.Supplier_List();
+                datainfo.Sort((x, y) => x.CompanyName.CompareTo(y.CompanyName));
+                SupplierList.DataSource = datainfo;
+                SupplierList.DataTextField = nameof(Supplier.CompanyName);
+                SupplierList.DataValueField = nameof(Supplier.SupplierID);
+                SupplierList.DataBind();
+                SupplierList.Items.Insert(0, "select ...");
+            }
+            catch (DbUpdateException ex)
+            {
+                UpdateException updateException = (UpdateException)ex.InnerException;
+                if (updateException.InnerException != null)
+                {
+                    errormsgs.Add(updateException.InnerException.Message.ToString());
+                }
+                else
+                {
+                    errormsgs.Add(updateException.Message);
+                }
+                LoadMessageDisplay(errormsgs, "alert alert-danger");
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        errormsgs.Add(validationError.ErrorMessage);
+                    }
+                }
+                LoadMessageDisplay(errormsgs, "alert alert-danger");
+            }
+            catch (Exception ex)
+            {
+                errormsgs.Add(GetInnerException(ex).ToString());
+                LoadMessageDisplay(errormsgs, "alert alert-danger");
+            }
+        }
+
+        protected void Search_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Clear_Click(object sender, EventArgs e)
+        {
+            ProductID.Text = "";
+            ProductName.Text = "";
+            QuantityPerUnit.Text = "";
+            UnitPrice.Text = "";
+            UnitsInStock.Text = "";
+            UnitsOnOrder.Text = "";
+            ReorderLevel.Text = "";
+            Discontinued.Checked = false;
+
+            ProductList.ClearSelection();
+            SupplierList.ClearSelection();
+            CategoryList.ClearSelection();
+        }
+
+        protected void AddProduct_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void UpdateProduct_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void RemoveProduct_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
