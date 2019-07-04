@@ -147,8 +147,66 @@ namespace WebApp.NorthwindPages
 
         protected void Search_Click(object sender, EventArgs e)
         {
+            //check for search arg
+
+            if (ProductList.SelectedIndex == 0)
+            {
+                //missing item
+            }
+            else
+            {
+                try
+                {
+                    //there
+                    //connect to BLL
+                    ProductController sysmgr = new ProductController();
+                    //call bll method with arg
+
+                    //check return 
+                    //missing / message
+                    //there / load returns to controls
+                }
+                catch (DbUpdateException ex)
+                {
+                    UpdateException updateException = (UpdateException)ex.InnerException;
+                    if (updateException.InnerException != null)
+                    {
+                        errormsgs.Add(updateException.InnerException.Message.ToString());
+                    }
+                    else
+                    {
+                        errormsgs.Add(updateException.Message);
+                    }
+                    LoadMessageDisplay(errormsgs, "alert alert-danger");
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in entityValidationErrors.ValidationErrors)
+                        {
+                            errormsgs.Add(validationError.ErrorMessage);
+                        }
+                    }
+                    LoadMessageDisplay(errormsgs, "alert alert-danger");
+                }
+                catch (Exception ex)
+                {
+                    errormsgs.Add(GetInnerException(ex).ToString());
+                    LoadMessageDisplay(errormsgs, "alert alert-danger");
+                }
+            }
 
         }
+    
+
+
+
+
+
+
+
+        
 
         protected void Clear_Click(object sender, EventArgs e)
         {
@@ -168,16 +226,35 @@ namespace WebApp.NorthwindPages
 
         protected void AddProduct_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void UpdateProduct_Click(object sender, EventArgs e)
         {
 
+            //run server side validation 
+            //do any server side code behinf validation
+            //good data 
+            //collect pkey data
+            //Collect data from controls
+            //connect to BLL 
+            //pass data to BLL
+            //sucess message no change / failure message
+            //refreshpage
+
         }
 
         protected void RemoveProduct_Click(object sender, EventArgs e)
         {
+
+           
+            //do any server side code behinf validation
+            //good data 
+            //collect pkey data         
+            //connect to BLL 
+            //pass data to BLL
+            //sucess message no change / failure message
+            //refreshpage
 
         }
     }
