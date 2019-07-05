@@ -166,7 +166,6 @@
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="SamplePages\FilterQuery.aspx" />
     <Content Include="SamplePages\FilterSearches.aspx" />
-    <Content Include="SamplePages\ODS-Reviewed.aspx" />
     <Content Include="SamplePages\ODSQuery.aspx" />
     <Content Include="SamplePages\ProductCRUD.aspx" />
     <Content Include="SamplePages\SimpleQuery.aspx" />
@@ -247,13 +246,6 @@
     </Compile>
     <Compile Include="SamplePages\FilterSearches.aspx.designer.cs">
       <DependentUpon>FilterSearches.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SamplePages\ODS-Reviewed.aspx.cs">
-      <DependentUpon>ODS-Reviewed.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SamplePages\ODS-Reviewed.aspx.designer.cs">
-      <DependentUpon>ODS-Reviewed.aspx</DependentUpon>
     </Compile>
     <Compile Include="SamplePages\ODSQuery.aspx.cs">
       <DependentUpon>ODSQuery.aspx</DependentUpon>

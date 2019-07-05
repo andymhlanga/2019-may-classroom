@@ -9,14 +9,12 @@ using NorthwindSystem.Data;
 using NorthwindSystem.DAL;
 using NorthwindSystem.Data.Views;
 using System.Data.SqlClient;
-using System.ComponentModel;
 #endregion
 
 namespace NorthwindSystem.BLL
-{   [DataObject]
+{
     public class SupplierController
-    {     
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
+    {
         public List<Supplier> Supplier_List()
         {
             using (var context = new NorthwindSystemContext())
